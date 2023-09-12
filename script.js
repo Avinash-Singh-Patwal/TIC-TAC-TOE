@@ -9,16 +9,17 @@ Array.from(click).forEach(e => {
     e.addEventListener('click',()=>{
         if(turn==="X")
         {
-           span.innerHTML=turn
+            span.innerHTML=turn
             turn="0"
             p[0].innerHTML="Turn for " + turn
-
+            
         }
         else{
             span.innerHTML=turn
             turn="X"
             p[0].innerHTML="Turn for "+turn
         }
+        winner();
     })    
 });
 reset.addEventListener("click",()=>{
@@ -28,3 +29,20 @@ reset.addEventListener("click",()=>{
     })
 })
 
+const winner=()=>{
+    let a=[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ]
+    a.forEach(e => {
+       if(tac[e[0]].innerHTML === tac[e[1]].innerHTML && tac[e[2]].innerHTML === tac[e[1]].innerHTML && tac[e[0]].innerHTML !== ""){
+        p[0].innerHTML = `${turn === "X"?"0":"X"} WON`
+       }
+    });
+}
